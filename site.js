@@ -15,6 +15,7 @@ function selectChannel(tab) {
   document.getElementById('channel-image').setAttribute('aria-hidden', String(key !== 'outdoor'));
   for (const [id,value] of Object.entries({'channel-status':data.status,'channel-title':data.title,'channel-description':data.description,'art-label':data.label,'art-title':data.art,'channel-cta':data.cta})) document.getElementById(id).textContent = value;
   document.getElementById('channel-features').replaceChildren(...data.features.map(text => { const item = document.createElement('li'); item.textContent = text; return item; }));
+  document.getElementById('channel-cta').href = {outdoor:'billboards.html',transit:'metro.html',digital:'digital.html',tv:'television.html',ott:'streaming.html'}[key];
 }
 tabs.forEach((tab,index) => {
   tab.addEventListener('click', () => selectChannel(tab));
@@ -37,7 +38,7 @@ if ('IntersectionObserver' in window) {
 }
 const hero = document.querySelector('.hero'), cards=[...document.querySelectorAll('.media-card')];
 let framePending=false;
-function animateScroll(){framePending=false;if(reducedMotion.matches||innerWidth<761){cards.forEach(card=>card.style.removeProperty('transform'));return;}const progress=Math.min(1,Math.max(0,-hero.getBoundingClientRect().top/hero.offsetHeight));cards.forEach((card,index)=>{const angle=[-4,3,6][index]*(1-progress);const y=[-15,20,-10][index]*progress;card.style.transform=`translateY(${y}px) rotate(${angle}deg)`;});}
+function animateScroll(){framePending=false;if(reducedMotion.matches||document.documentElement.classList.contains('animations-paused')||innerWidth<761){cards.forEach(card=>card.style.removeProperty('transform'));return;}const progress=Math.min(1,Math.max(0,-hero.getBoundingClientRect().top/hero.offsetHeight));cards.forEach((card,index)=>{const angle=[-4,3,6][index]*(1-progress);const y=[-15,20,-10][index]*progress;card.style.transform=`translateY(${y}px) rotate(${angle}deg)`;});}
 window.addEventListener('scroll',()=>{if(!framePending){framePending=true;requestAnimationFrame(animateScroll);}},{passive:true});
 window.addEventListener('resize',animateScroll);
 reducedMotion.addEventListener('change',animateScroll);

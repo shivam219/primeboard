@@ -1,5 +1,13 @@
 # Primeboard public website
 
+## Multi-page site
+
+Ten pages: Home, Billboards & screens, Metro & trains, Television, OTT & streaming, Social & search, Platform, Media owners, Company, and Privacy & terms. Shared Solutions navigation is generated into each HTML page for use without JavaScript.
+
+`python build_pages.py` regenerates the detail pages and shared navigation. It preserves the homepage body and existing legal sections. `python validate_site.py` checks all local links, anchors, unique IDs, one H1 per page and preservation of legal sections relative to HEAD. Run `node --check pages.js` as well.
+
+Interactive examples include single/multi-channel TV selection, streaming-service selection, six digital placements (including Outlook), static/digital billboards, three transit positions, and a pause-animation control. These are fictional campaign previews, not working ad publishing tools. Publisher examples are sourced from JioStar's portfolio, Sony Pictures Networks India's overview and Zee Entertainment's corporate site. International streaming examples are subject to market eligibility; see Amazon Ads Prime Video and Netflix's advertising help pages. Generic text badges identify services and do not imply official partnerships.
+
 Static marketing site deployed from `main` through the existing Vercel Git integration. No build command, environment secrets or application backend are required.
 
 ## Preview
